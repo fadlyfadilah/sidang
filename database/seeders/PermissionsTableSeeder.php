@@ -80,6 +80,66 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 18,
+                'title' => 'mahasiswa_create',
+            ],
+            [
+                'id'    => 19,
+                'title' => 'mahasiswa_edit',
+            ],
+            [
+                'id'    => 20,
+                'title' => 'mahasiswa_show',
+            ],
+            [
+                'id'    => 21,
+                'title' => 'mahasiswa_delete',
+            ],
+            [
+                'id'    => 22,
+                'title' => 'mahasiswa_access',
+            ],
+            [
+                'id'    => 23,
+                'title' => 'orangtua_create',
+            ],
+            [
+                'id'    => 24,
+                'title' => 'orangtua_edit',
+            ],
+            [
+                'id'    => 25,
+                'title' => 'orangtua_show',
+            ],
+            [
+                'id'    => 26,
+                'title' => 'orangtua_delete',
+            ],
+            [
+                'id'    => 27,
+                'title' => 'orangtua_access',
+            ],
+            [
+                'id'    => 28,
+                'title' => 'syarat_create',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'syarat_edit',
+            ],
+            [
+                'id'    => 30,
+                'title' => 'syarat_show',
+            ],
+            [
+                'id'    => 31,
+                'title' => 'syarat_delete',
+            ],
+            [
+                'id'    => 32,
+                'title' => 'syarat_access',
+            ],
+            [
+                'id'    => 33,
                 'title' => 'profile_password_edit',
             ],
         ];

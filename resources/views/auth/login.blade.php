@@ -3,7 +3,7 @@
 <div class="login-box">
     <div class="login-logo">
         <a href="{{ route('admin.home') }}">
-            Kai Access
+            Sistem Sidang Sarjana
         </a>
     </div>
     <div class="login-box-body">

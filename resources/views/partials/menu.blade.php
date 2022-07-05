@@ -79,40 +79,52 @@
                             </li>
                         @endcan
                         @can('orangtua_access')
-                        <li
-                            class="{{ request()->is('admin/orangtuas') || request()->is('admin/orangtuas/*') ? 'active' : '' }}">
-                            <a href="{{ route('admin.orangtuas.index') }}">
-                                <i class="fa-fw fas fa-user-friends">
+                            <li
+                                class="{{ request()->is('admin/orangtuas') || request()->is('admin/orangtuas/*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.orangtuas.index') }}">
+                                    <i class="fa-fw fas fa-user-friends">
 
-                                </i>
-                                <span>Data Orang Tua</span>
+                                    </i>
+                                    <span>Data Orang Tua</span>
 
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
-            @can('profile_password_edit')
-                <li
-                    class="{{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}">
-                    <a href="{{ route('profile.password.edit') }}">
-                        <i class="fa-fw fas fa-key">
-                        </i>
-                        Ganti Password
-                    </a>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('syarat_access')
+                            <li
+                                class="{{ request()->is('admin/syarats') || request()->is('admin/syarats/*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.syarats.index') }}">
+                                    <i class="fa-fw fas fa-user-friends">
+
+                                    </i>
+                                    <span>Data Syarat Sidang</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
                 </li>
             @endcan
-        @endif
-        <li>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                <i class="fas fa-fw fa-sign-out-alt">
+            @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
+                @can('profile_password_edit')
+                    <li
+                        class="{{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}">
+                        <a href="{{ route('profile.password.edit') }}">
+                            <i class="fa-fw fas fa-key">
+                            </i>
+                            Ganti Password
+                        </a>
+                    </li>
+                @endcan
+            @endif
+            <li>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                    <i class="fas fa-fw fa-sign-out-alt">
 
-                </i>
-                Keluar
-            </a>
-        </li>
-    </ul>
-</section>
+                    </i>
+                    Keluar
+                </a>
+            </li>
+        </ul>
+    </section>
 </aside>

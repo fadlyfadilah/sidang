@@ -13,7 +13,7 @@
                             @csrf
                             <div class="form-group {{ $errors->has('mahasiswa') ? 'has-error' : '' }}">
                                 <label>Mahasiswa</label>
-                                <select class="form-control" name="mahasiswa" id="mahasiswa">
+                                <select class="form-control" name="user_id" id="mahasiswa">
                                     <option value disabled {{ old('mahasiswa', null) === null ? 'selected' : '' }}>
                                         Pilih Salah Satu!</option>
                                     @foreach ($mahasiswas as $data)
