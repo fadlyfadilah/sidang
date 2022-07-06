@@ -43,7 +43,7 @@ class LoginController extends Controller
             return '/admin';
         }
 
-        return '/';
+        return '/user';
     }
 
     

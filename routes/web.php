@@ -8,17 +8,12 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SyaratController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\MahasiswaController as FrontendMahasiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
-Route::get('/home', function () {
-    if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
-    }
-
-    return redirect()->route('admin.home');
-});
 
 Auth::routes();
 
@@ -37,18 +32,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('users', UsersController::class);
 
     // Mahasiswa
-    Route::delete('mahasiswas/destroy', [MahasiswaController::class,'massDestroy'])->name('mahasiswas.massDestroy');
-    Route::resource('mahasiswas', MahasiswaController::class); 
-    
+    Route::delete('mahasiswas/destroy', [MahasiswaController::class, 'massDestroy'])->name('mahasiswas.massDestroy');
+    Route::resource('mahasiswas', MahasiswaController::class);
+
     // Orangtua
     Route::delete('orangtuas/destroy', [OrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
     Route::resource('orangtuas', OrangtuaController::class);
-    
+
     // Syarat
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
     Route::resource('syarats', SyaratController::class)->except('update');
     Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
-
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -58,4 +52,24 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile', [ChangePasswordController::class, 'updateProfile'])->name('password.updateProfile');
         Route::post('profile/destroy', [ChangePasswordController::class, 'destroy'])->name('password.destroyProfile');
     }
+});
+Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['auth']], function () {
+    Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
+    // Mahasiswa
+    Route::delete('mahasiswas/destroy', [FrontendMahasiswaController::class, 'massDestroy'])->name('mahasiswas.massDestroy');
+    Route::resource('mahasiswas', FrontendMahasiswaController::class);
+
+    // Orangtua
+    Route::delete('orangtuas/destroy', [OrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
+    Route::resource('orangtuas', OrangtuaController::class);
+
+    // Syarat
+    Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
+    Route::resource('syarats', SyaratController::class)->except('update');
+    Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
+    
+    Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
+    Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
+    Route::post('frontend/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
+    Route::post('frontend/profile/password', 'ProfileController@password')->name('profile.password');
 });
