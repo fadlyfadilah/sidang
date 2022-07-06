@@ -46,7 +46,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     // Syarat
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
-    Route::resource('syarats', SyaratController::class);
+    Route::resource('syarats', SyaratController::class)->except('update');
+    Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

@@ -69,7 +69,7 @@ class SyaratController extends Controller
         return redirect()->route('admin.syarats.index');
     }
 
-    public function edit(Orangtua $orangtua)
+    public function edit(Syarat $syarat)
     {
         abort_if(Gate::denies('syarat_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -77,25 +77,25 @@ class SyaratController extends Controller
             $query->pluck('name', 'nik');
         }])->get(); 
 
-        $orangtua->load('mahasiswa');
+        $syarat->load('mahasiswa');
 
-        return view('admin.syarats.edit', compact('mahasiswas', 'orangtua'));
+        return view('admin.syarats.edit', compact('mahasiswas', 'syarat'));
     }
 
-    public function update(UpdateOrangtuaRequest $request, Orangtua $orangtua)
+    public function update(Request $request, Syarat $syarat)
     {
-        $orangtua->update($request->all());
+        $syarat->update($request->all());
 
-        return redirect()->route('admin.syarats.index');
+        return redirect()->back();
     }
 
-    public function show(Orangtua $orangtua)
+    public function show(Syarat $syarat)
     {
         abort_if(Gate::denies('syarat_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orangtua->load('mahasiswa');
+        $syarat->load('mahasiswa');
 
-        return view('admin.orangtuas.show', compact('orangtua'));
+        return view('admin.syarats.show', compact('syarat'));
     }
 
     public function destroy(Orangtua $orangtua)
