@@ -112,6 +112,11 @@
                                             Data Orang Tua
                                         </a>
                                     @endcan
+                                    @can('syarat_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.syarats.index') }}">
+                                            Data Syarat Sidang
+                                        </a>
+                                    @endcan
                                     @can('pembimbing_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.pembimbings.index') }}">
                                             {{ trans('cruds.pembimbing.title') }}

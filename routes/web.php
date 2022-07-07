@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\MahasiswaController as FrontendMahasiswaController;
+use App\Http\Controllers\Frontend\OrangtuaController as FrontendOrangtuaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,13 +61,12 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::resource('mahasiswas', FrontendMahasiswaController::class);
 
     // Orangtua
-    Route::delete('orangtuas/destroy', [OrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
-    Route::resource('orangtuas', OrangtuaController::class);
+    Route::delete('orangtuas/destroy', [FrontendOrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
+    Route::resource('orangtuas', FrontendOrangtuaController::class);
 
     // Syarat
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
     Route::resource('syarats', SyaratController::class)->except('update');
-    Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
     
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
