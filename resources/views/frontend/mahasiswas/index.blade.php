@@ -17,7 +17,6 @@
 
                         <form method="POST" action="{{ route('frontend.mahasiswas.store') }}" enctype="multipart/form-data">
                             @csrf
-
                             <div class="form-group {{ $errors->has('prodi') ? 'has-error' : '' }}">
                                 <label>Prodi</label>
                                 <select class="form-control" name="prodi" id="prodi">

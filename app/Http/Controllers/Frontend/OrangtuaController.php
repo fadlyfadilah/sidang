@@ -19,7 +19,7 @@ class OrangtuaController extends Controller
         abort_if(Gate::denies('orangtua_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
         $orangtua = Orangtua::where('mahasiswa_id', $mahasiswa->id)->first();
-
+        
         return view('frontend.orangtuas.index', compact('orangtua'));
     }
 
@@ -47,7 +47,7 @@ class OrangtuaController extends Controller
             'no_hp'   => $request->get('no_hp'),
         ]);
 
-        return redirect()->with('success', 'Berhasil di  Ubah')->route('frontend.orangtuas.index');
+        return redirect()->route('frontend.orangtuas.index');
     }
 
     public function edit(Orangtua $orangtua)
