@@ -99,7 +99,7 @@
                                     @endcan
                                     @can('management_mahasiswa_access')
                                         <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.managementMahasiswa.title') }}
+                                            Management Identitas Mahasiswas
                                         </a>
                                     @endcan
                                     @can('mahasiswa_access')

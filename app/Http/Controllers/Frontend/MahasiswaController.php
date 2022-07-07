@@ -18,14 +18,8 @@ class MahasiswaController extends Controller
     {
         abort_if(Gate::denies('mahasiswa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::with(['roles' => function ($query) {
-            $query->where('title', 'User');
-        }, 'mahasiswa'])->get();
-
-        foreach ($users as $user) {
-            $mahasiswas = Mahasiswa::all();
-        }
-        return view('frontend.mahasiswas.index', compact('mahasiswas'));
+        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
+        return view('frontend.mahasiswas.index', compact('mahasiswa'));
     }
 
     public function create()
@@ -39,7 +33,17 @@ class MahasiswaController extends Controller
 
     public function store(StoreMahasiswaRequest $request)
     {
-        $mahasiswa = Mahasiswa::create($request->all());
+        $mahasiswa = Mahasiswa::updateOrCreate([
+            'user_id'   => auth()->user()->id,
+        ], [
+            'prodi'     => $request->get('prodi'),
+            'tempat_lahir' => $request->get('tempat_lahir'),
+            'ttl'    => $request->get("ttl"),
+            'alamat'   => $request->get('alamat'),
+            'no_hp'       => $request->get('no_hp'),
+            'asal_sekolah'   => $request->get('asal_sekolah'),
+            'medsos'    => $request->get('medsos')
+        ]);
 
         return redirect()->route('frontend.mahasiswas.index');
     }

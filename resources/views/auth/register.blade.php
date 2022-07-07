@@ -3,12 +3,12 @@
 <div class="login-box">
     <div class="login-logo">
         <a href="{{ route('admin.home') }}">
-            KAI-Access
+            System Sidang Sarjana
         </a>
     </div>
     <div class="login-box-body">
         <p class="login-box-msg">
-            {{ trans('global.register') }}
+            Register
         </p>
         <form method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
@@ -22,11 +22,11 @@
                         </p>
                     @endif
                 </div>
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" required placeholder="Email" value="{{ old('email', null) }}">
-                    @if($errors->has('email'))
+                <div class="form-group{{ $errors->has('nik') ? ' has-error' : '' }}">
+                    <input type="text" name="nik" class="form-control" required placeholder="nik" value="{{ old('nik', null) }}">
+                    @if($errors->has('nik'))
                         <p class="help-block">
-                            {{ $errors->first('email') }}
+                            {{ $errors->first('nik') }}
                         </p>
                     @endif
                 </div>
