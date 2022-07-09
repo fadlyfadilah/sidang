@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>System Sidang Sarjana</title>
+    <title>Sistem Sidang Sarjana FMIPA</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -28,8 +28,8 @@
     <div class="wrapper" style="height: auto; min-height: 100%;">
         <header class="main-header">
             <a href="#" class="logo">
-                <span class="logo-mini"><b>System Sidang Sarjana</b></span>
-                <span class="logo-lg">System Sidang Sarjana</span>
+                <span class="logo-mini"><b>Sistem Sidang Sarjana FMIPA</b></span>
+                <span class="logo-lg">Sistem Sidang Sarjana FMIPA</span>
             </a>
 
             <nav class="navbar navbar-static-top">
@@ -90,7 +90,7 @@
             @yield('content')
         </div>
         <footer class="main-footer text-center">
-            <strong>System Sidang &copy;</strong> All Right Reserved
+            <strong>SIstem Sidang Sarjana FMIPA &copy;</strong> All Right Reserved
         </footer>
 
         <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -1,0 +1,142 @@
+@extends('layouts.frontend')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    Ubah Skpi
+                </div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route("user.skpis.update", [$skpi->id]) }}" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <div class="form-group">
+                            <label class="required" for="nama_id">NPM</label>
+                            <select class="form-control select2" name="nama_id" id="nama_id" required>
+                                @foreach($namas as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('nama_id') ? old('nama_id') : $skpi->nama->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('nama'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('nama') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="kualifikasi">Nama Kegiatan (Bahasa Indonesia)</label>
+                            <input class="form-control" type="text" name="kualifikasi" id="kualifikasi" value="{{ old('kualifikasi', $skpi->kualifikasi) }}" required>
+                            @if($errors->has('kualifikasi'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('kualifikasi') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="kegiatan">Nama Kegiatan (Bahasa Inggris)</label>
+                            <input class="form-control" type="text" name="kegiatan" id="kegiatan" value="{{ old('kegiatan', $skpi->kegiatan) }}" required>
+                            @if($errors->has('kegiatan'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('kegiatan') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Keterangan</label>
+                            <select class="form-control" name="keterangan" id="keterangan" required>
+                                <option value disabled {{ old('keterangan', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                                @foreach(App\Models\Skpi::KETERANGAN_SELECT as $key => $label)
+                                    <option value="{{ $key }}" {{ old('keterangan', $skpi->keterangan) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('keterangan'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('keterangan') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File</label>
+                            <div class="needsclick dropzone" id="file-dropzone">
+                            </div>
+                            @if($errors->has('file'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('file') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    var uploadedFileMap = {}
+Dropzone.options.fileDropzone = {
+    url: '{{ route('user.skpis.storeMedia') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    params: {
+      size: 2
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="file[]" value="' + response.name + '">')
+      uploadedFileMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedFileMap[file.name]
+      }
+      $('form').find('input[name="file[]"][value="' + name + '"]').remove()
+    },
+    init: function () {
+@if(isset($skpi) && $skpi->file)
+          var files =
+            {!! json_encode($skpi->file) !!}
+              for (var i in files) {
+              var file = files[i]
+              this.options.addedfile.call(this, file)
+              file.previewElement.classList.add('dz-complete')
+              $('form').append('<input type="hidden" name="file[]" value="' + file.file_name + '">')
+            }
+@endif
+    },
+     error: function (file, response) {
+         if ($.type(response) === 'string') {
+             var message = response //dropzone sends it's own error messages in string
+         } else {
+             var message = response.errors.file
+         }
+         file.previewElement.classList.add('dz-error')
+         _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+         _results = []
+         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+             node = _ref[_i]
+             _results.push(node.textContent = message)
+         }
+
+         return _results
+     }
+}
+</script>
+@endsection

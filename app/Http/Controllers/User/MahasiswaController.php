@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMahasiswaRequest;
@@ -19,7 +19,8 @@ class MahasiswaController extends Controller
         abort_if(Gate::denies('mahasiswa_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
-        return view('frontend.mahasiswas.index', compact('mahasiswa'));
+        return view('user.mahasiswas.index', compact('mahasiswa'));
+        
     }
 
     public function create()
@@ -28,7 +29,7 @@ class MahasiswaController extends Controller
         $list = new Mahasiswa();
         $mahasiswas = $list->mahasiswaUser();
 
-        return view('frontend.mahasiswas.create', compact('mahasiswas'));
+        return view('user.mahasiswas.create', compact('mahasiswas'));
     }
 
     public function store(StoreMahasiswaRequest $request)
@@ -45,21 +46,21 @@ class MahasiswaController extends Controller
             'medsos'    => $request->get('medsos')
         ]);
 
-        return redirect()->route('frontend.mahasiswas.index');
+        return redirect()->back()->with('success', 'Berhasil!');
     }
 
     public function edit(Mahasiswa $mahasiswa)
     {
         abort_if(Gate::denies('mahasiswa_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('frontend.mahasiswas.edit', compact('mahasiswa'));
+        return view('user.mahasiswas.edit', compact('mahasiswa'));
     }
 
     public function update(UpdateMahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
         $mahasiswa->update($request->all());
 
-        return redirect()->route('frontend.mahasiswas.index');
+        return redirect()->route('user.mahasiswas.index');
     }
 
     public function show(Mahasiswa $mahasiswa)
@@ -68,7 +69,7 @@ class MahasiswaController extends Controller
         $maha = User::find($mahasiswa->user_id);
         $mahasiswa->load('mahasiswaOrangtuas');
 
-        return view('frontend.mahasiswas.show', compact('mahasiswa', 'maha'));
+        return view('user.mahasiswas.show', compact('mahasiswa', 'maha'));
     }
 
     public function destroy(Mahasiswa $mahasiswa)

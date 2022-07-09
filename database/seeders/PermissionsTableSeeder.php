@@ -140,6 +140,94 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 33,
+                'title' => 'pembimbing_create',
+            ],
+            [
+                'id'    => 34,
+                'title' => 'pembimbing_edit',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'pembimbing_show',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'pembimbing_delete',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'pembimbing_access',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'penguji_create',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'penguji_edit',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'penguji_show',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'penguji_delete',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'penguji_access',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'nilai_create',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'nilai_edit',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'nilai_show',
+            ],
+            [
+                'id'    => 46,
+                'title' => 'nilai_delete',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'nilai_access',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'dosenpembimbing_access',
+            ],
+            [
+                'id'    => 49,
+                'title' => 'dosenpenguji_access',
+            ],
+            [
+                'id'    => 50,
+                'title' => 'skpi_create',
+            ],
+            [
+                'id'    => 51,
+                'title' => 'skpi_edit',
+            ],
+            [
+                'id'    => 52,
+                'title' => 'skpi_show',
+            ],
+            [
+                'id'    => 53,
+                'title' => 'skpi_delete',
+            ],
+            [
+                'id'    => 54,
+                'title' => 'skpi_access',
+            ],
+            [
+                'id'    => 55,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -31,7 +31,7 @@ return new class extends Migration
             $table->enum('transkripstatus', ['0','1','2'])->default('0');
             $table->string('pembayaran');
             $table->enum('pembayaranstatus', ['0','1','2'])->default('0');
-            $table->string('status')->default('noverif');
+            $table->string('status')->default('Belum Terverifikasi');
             $table->string('feedback')->nullable();
             $table->timestamps();
         });

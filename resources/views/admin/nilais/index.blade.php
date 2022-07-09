@@ -1,24 +1,15 @@
 @extends('layouts.admin')
 @section('content')
 <div class="content">
-    @can('syarat_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.syarats.create') }}">
-                    Tambah Syarat Sidang
-                </a>
-            </div>
-        </div>
-    @endcan
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Syarat Sidang
+                    Daftar Data Orang Tua
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-syarat">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-Orangtua">
                             <thead>
                                 <tr>
                                     <th width="10">
@@ -28,7 +19,7 @@
                                         Mahasiswa
                                     </th>
                                     <th>
-                                        Status
+                                        NPM
                                     </th>
                                     <th>
                                         &nbsp;
@@ -36,20 +27,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($syarats as $key => $syarat)
-                                    <tr data-entry-id="{{ $syarat->id }}">
+                                @foreach($nilais as $nilai)
+                                    <tr data-entry-id="{{ $nilai->id }}">
                                         <td>
 
                                         </td>
                                         <td>
-                                            {{ $syarat->mahasiswa->user->name ?? '' }}
+                                            {{ $nilai->user->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $syarat->status ?? '' }}
+                                            {{ $nilai->user->nik ?? '' }}
                                         </td>
                                         <td>
-                                            @can('syarat_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.syarats.show', $syarat->id) }}">
+                                            @can('orangtua_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.nilais.show', $nilai->id) }}">
                                                     View
                                                 </a>
                                             @endcan
@@ -74,11 +65,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('syarat_delete')
+@can('orangtua_delete')
   let deleteButtonTrans = 'Delete'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.syarats.massDestroy') }}",
+    url: "{{ route('admin.orangtuas.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -109,7 +100,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-syarat:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-Orangtua:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

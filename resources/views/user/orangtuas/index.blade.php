@@ -15,7 +15,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                        <form method="POST" action="{{ route('frontend.orangtuas.store') }}"
+                        <form method="POST" action="{{ route('user.orangtuas.store') }}"
                             enctype="multipart/form-data">
                             @csrf
 
@@ -174,7 +174,7 @@
                 let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
                 let deleteButton = {
                     text: deleteButtonTrans,
-                    url: "{{ route('frontend.mahasiswas.massDestroy') }}",
+                    url: "{{ route('user.mahasiswas.massDestroy') }}",
                     className: 'btn-danger',
                     action: function(e, dt, node, config) {
                         var ids = $.map(dt.rows({

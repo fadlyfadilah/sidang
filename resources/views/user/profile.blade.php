@@ -9,7 +9,7 @@
                     {{ trans('global.my_profile') }}
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route("frontend.profile.update") }}">
+                    <form method="POST" action="{{ route("user.profile.update") }}">
                         @csrf
                         <div class="form-group">
                             <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
@@ -44,7 +44,7 @@
                     {{ trans('global.change_password') }}
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route("frontend.profile.password") }}">
+                    <form method="POST" action="{{ route("user.profile.password") }}">
                         @csrf
                         <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                             <label class="required" for="password">New {{ trans('cruds.user.fields.password') }}</label>
@@ -74,7 +74,7 @@
                     {{ trans('global.delete_account') }}
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route("frontend.profile.destroy") }}" onsubmit="return prompt('{{ __('global.delete_account_warning') }}') == '{{ auth()->user()->email }}'">
+                    <form method="POST" action="{{ route("user.profile.destroy") }}" onsubmit="return prompt('{{ __('global.delete_account_warning') }}') == '{{ auth()->user()->email }}'">
                         @csrf
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

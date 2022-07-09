@@ -61,6 +61,16 @@ class Mahasiswa extends Model
         return $this->hasMany(Orangtua::class, 'mahasiswa_id', 'id');
     }
 
+    public function syarats()
+    {
+        return $this->hasMany(Syarat::class, 'mahasiswa_id', 'id');
+    }
+
+    public function mahasiswaNilais()
+    {
+        return $this->hasMany(Nilai::class, 'mahasiswa_id', 'id');
+    }
+
     public function getTtlAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
@@ -74,5 +84,13 @@ class Mahasiswa extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+    public function userpembimbing()
+    {
+        return $this->belongsToMany(User::class, 'mahasiswa_user', 'mahasiswa_id', 'user_id');
+    }
+    public function userpenguji()
+    {
+        return $this->belongsToMany(User::class, 'penguji', 'mahasiswa_id', 'user_id');
     }
 }

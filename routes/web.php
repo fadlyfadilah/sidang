@@ -2,22 +2,34 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MahasiswaController;
+use App\Http\Controllers\Admin\NilaiController as AdminNilaiController;
 use App\Http\Controllers\Admin\OrangtuaController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\SkpiController;
 use App\Http\Controllers\Admin\SyaratController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
-use App\Http\Controllers\Frontend\MahasiswaController as FrontendMahasiswaController;
-use App\Http\Controllers\Frontend\OrangtuaController as FrontendOrangtuaController;
-use App\Http\Controllers\Frontend\SyaratController as FrontendSyaratController;
+use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\User\MahasiswaController as UserMahasiswaController;
+use App\Http\Controllers\User\OrangtuaController as UserOrangtuaController;
+use App\Http\Controllers\User\SyaratController as UserSyaratController;
+use App\Http\Controllers\User\PembimbingController as UserPembimbingController;
+use App\Http\Controllers\Dosen\PembimbingController as DosenPembimbingController;
+use App\Http\Controllers\Dosen\NilaiController;
+use App\Http\Controllers\User\PengujiController as UserPengujiController;
+use App\Http\Controllers\Dosen\PengujiController as DosenPengujiController;
+use App\Http\Controllers\User\SkpiController as UserSkpiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
 Auth::routes();
+Route::delete('skpis/destroy', [SkpiController::class, 'massDestroy'])->name('skpis.massDestroy');
+Route::post('skpis/media', [SkpiController::class ,'storeMedia'])->name('skpis.storeMedia');
+Route::post('skpis/ckmedia', [SkpiController::class ,'storeCKEditorImages'])->name('skpis.storeCKEditorImages');
+Route::resource('skpis', SkpiController::class);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -45,6 +57,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
     Route::resource('syarats', SyaratController::class)->except('update');
     Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
+
+    // Skpi
+
+    Route::resource('nilais', AdminNilaiController::class);
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -55,22 +72,57 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile/destroy', [ChangePasswordController::class, 'destroy'])->name('password.destroyProfile');
     }
 });
-Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['auth']], function () {
-    Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function () {
+    Route::get('/', [UserHomeController::class, 'index'])->name('home');
     // Mahasiswa
-    Route::delete('mahasiswas/destroy', [FrontendMahasiswaController::class, 'massDestroy'])->name('mahasiswas.massDestroy');
-    Route::resource('mahasiswas', FrontendMahasiswaController::class);
+    Route::delete('mahasiswas/destroy', [UserMahasiswaController::class, 'massDestroy'])->name('mahasiswas.massDestroy');
+    Route::resource('mahasiswas', UserMahasiswaController::class);
 
     // Orangtua
-    Route::delete('orangtuas/destroy', [FrontendOrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
-    Route::resource('orangtuas', FrontendOrangtuaController::class);
+    Route::delete('orangtuas/destroy', [UserOrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
+    Route::resource('orangtuas', UserOrangtuaController::class);
 
     // Syarat
-    Route::delete('syarats/destroy', [FrontendSyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
-    Route::resource('syarats', FrontendSyaratController::class)->except('update');
+    Route::delete('syarats/destroy', [UserSyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
+    Route::resource('syarats', UserSyaratController::class)->except('update');
     
-    Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
-    Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
-    Route::post('frontend/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
-    Route::post('frontend/profile/password', 'ProfileController@password')->name('profile.password');
+    Route::resource('pembimbings', UserPembimbingController::class);
+    Route::resource('pengujis', UserPengujiController::class);
+
+    // Skpi
+    Route::delete('skpis/destroy', [UserSkpiController::class ,'massDestroy'])->name('skpis.massDestroy');
+    Route::post('skpis/media', [UserSkpiController::class ,'storeMedia'])->name('skpis.storeMedia');
+    Route::post('skpis/ckmedia', [UserSkpiController::class ,'storeCKEditorImages'])->name('skpis.storeCKEditorImages');
+    Route::resource('skpis', UserSkpiController::class);
+    
+    Route::get('user/profile', 'ProfileController@index')->name('profile.index');
+    Route::post('user/profile', 'ProfileController@update')->name('profile.update');
+    Route::post('user/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
+    Route::post('user/profile/password', 'ProfileController@password')->name('profile.password');
+});
+
+Route::group(['prefix' => 'dosen', 'as' => 'dosen.', 'middleware' => ['auth']], function () {
+    Route::get('/', [UserHomeController::class, 'index'])->name('home');
+    // Mahasiswa
+    Route::delete('mahasiswas/destroy', [UserMahasiswaController::class, 'massDestroy'])->name('mahasiswas.massDestroy');
+    Route::resource('mahasiswas', UserMahasiswaController::class);
+
+    // Orangtua
+    Route::delete('orangtuas/destroy', [UserOrangtuaController::class, 'massDestroy'])->name('orangtuas.massDestroy');
+    Route::resource('orangtuas', UserOrangtuaController::class);
+
+    // Syarat
+    Route::delete('syarats/destroy', [UserSyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
+    Route::resource('syarats', UserSyaratController::class)->except('update');
+    
+    Route::resource('pembimbings', DosenPembimbingController::class);
+    Route::resource('pengujis', DosenPengujiController::class);
+
+    // Nilai
+    Route::resource('nilais', NilaiController::class);
+    
+    Route::get('user/profile', 'ProfileController@index')->name('profile.index');
+    Route::post('user/profile', 'ProfileController@update')->name('profile.update');
+    Route::post('user/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
+    Route::post('user/profile/password', 'ProfileController@password')->name('profile.password');
 });

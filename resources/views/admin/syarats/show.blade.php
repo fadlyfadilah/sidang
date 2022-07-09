@@ -27,7 +27,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Skripsi
+                                            File Skripsi (Sudah Ditandatangani Pembimbing)
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->skripsi) }}">{{ $syarat->skripsi }}</a>
@@ -47,7 +47,7 @@
                                                                 id="skripsistatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -74,10 +74,10 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Pas Photo
+                                            Pas Photo (format .jpg/.png)
                                         </th>
                                         <td>
-                                            <img src="{{ asset("/storage/".$syarat->photo ?? '') }}" alt="">
+                                            <img width="128px" src="{{ asset("/storage/".$syarat->photo ?? '') }}" alt="">
                                         </td>
                                         <td class="d-flex">
                                             @if ($syarat->photostatus == 0)
@@ -94,7 +94,7 @@
                                                                 id="photostatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -121,7 +121,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Serti Calon Sarjana
+                                            Sertifikat Calon Sarjana
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->serticalonsarjana) }}">{{ $syarat->serticalonsarjana }}</a>
@@ -141,7 +141,7 @@
                                                                 id="serticalonsarjanastatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -168,7 +168,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Serti Bebas Perpus
+                                            Surat Keterangan Bebas Perpustakaan Universitas
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->sertibebasperpus) }}">{{ $syarat->sertibebasperpus }}</a>
@@ -188,7 +188,7 @@
                                                                 id="sertibebasperpusstatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -215,7 +215,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Serti Maba
+                                            Sertifikat PPMB
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->sertimaba) }}">{{ $syarat->sertimaba }}</a>
@@ -235,7 +235,7 @@
                                                                 id="sertimabastatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -262,7 +262,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Bebas Lab
+                                            Surat Keterangan Bebas Peminjaman Alat Laboratorium
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->bebaslab) }}">{{ $syarat->bebaslab }}</a>
@@ -282,7 +282,7 @@
                                                                 id="bebaslabstatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -309,7 +309,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Transkrip
+                                            Transkrip Nilai
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->transkrip) }}">{{ $syarat->transkrip }}</a>
@@ -329,7 +329,7 @@
                                                                 id="transkripstatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -356,7 +356,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Pembayaran
+                                            Bukti Pembayaran Biaya Sidang
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->pembayaran) }}">{{ $syarat->pembayaran }}</a>
@@ -376,7 +376,7 @@
                                                                 id="pembayaranstatus">
                                                                 <option selected hidden>Pilih Salah Satu!</option>
                                                                 <option value="1">Tolak</option>
-                                                                <option value="2">Approve</option>
+                                                                <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-success btn-sm" type="submit">Verif</button>
@@ -412,9 +412,9 @@
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
                                             <option {{ old('status', '') === (string) $syarat->status ? 'selected' : '' }} value="{{ $syarat->status }}">{{ $syarat->status }}</option>
-                                            <option value="Verifikasi Admin">Verifikasi Admin</option>
-                                            <option value="Verifikasi Kasie Akademik">Verifikasi Kasie Akademik</option>
-                                            <option value="Verifikasi Wakil Dekan 1">Verifikasi Wakil Dekan 1</option>
+                                            <option value="Terverifikasi Admin Fakultas">Terverifikasi Admin Fakultas</option>
+                                            <option value="Disetujui Kasie Akademik">Disetujui Kasie Akademik</option>
+                                            <option value="Disetujui Wakil Dekan 1">Disetujui Wakil Dekan 1</option>
                                         </select>
                                     </div>
                                     <button class="mb-3 btn btn-success btn-sm" type="submit">Kirim</button>

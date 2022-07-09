@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyOrangtuaRequest;
@@ -20,7 +20,7 @@ class OrangtuaController extends Controller
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
         $orangtua = Orangtua::where('mahasiswa_id', $mahasiswa->id)->first();
         
-        return view('frontend.orangtuas.index', compact('orangtua'));
+        return view('user.orangtuas.index', compact('orangtua'));
     }
 
     public function create()
@@ -30,7 +30,7 @@ class OrangtuaController extends Controller
         $mahasiswas = Mahasiswa::with(['user' => function ($query) {
             $query->pluck('name', 'nik');
         }])->get();
-        return view('frontend.orangtuas.create', compact('mahasiswas'));
+        return view('user.orangtuas.create', compact('mahasiswas'));
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class OrangtuaController extends Controller
             'no_hp'   => $request->get('no_hp'),
         ]);
 
-        return redirect()->route('frontend.orangtuas.index');
+        return redirect()->back()->with('success', 'Berhasil!');
     }
 
     public function edit(Orangtua $orangtua)
@@ -60,14 +60,14 @@ class OrangtuaController extends Controller
 
         $orangtua->load('mahasiswa');
 
-        return view('frontend.orangtuas.edit', compact('mahasiswas', 'orangtua'));
+        return view('user.orangtuas.edit', compact('mahasiswas', 'orangtua'));
     }
 
     public function update(UpdateOrangtuaRequest $request, Orangtua $orangtua)
     {
         $orangtua->update($request->all());
 
-        return redirect()->route('frontend.orangtuas.index');
+        return redirect()->route('user.orangtuas.index');
     }
 
     public function show(Orangtua $orangtua)
@@ -76,7 +76,7 @@ class OrangtuaController extends Controller
 
         $orangtua->load('mahasiswa');
 
-        return view('frontend.orangtuas.show', compact('orangtua'));
+        return view('user.orangtuas.show', compact('orangtua'));
     }
 
     public function destroy(Orangtua $orangtua)

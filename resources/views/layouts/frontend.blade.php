@@ -23,10 +23,13 @@
     <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css"
+        rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
@@ -38,7 +41,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     System Sidang Sarjana
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -48,7 +53,7 @@
                         @guest
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.home') }}">
+                                <a class="nav-link" href="{{ route('user.home') }}">
                                     {{ __('Dashboard') }}
                                 </a>
                             </li>
@@ -62,20 +67,22 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if(Route::has('register'))
+                            @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.profile.index') }}">{{ __('My profile') }}</a>
 
                                     @can('user_management_access')
                                         <a class="dropdown-item disabled" href="#">
@@ -83,67 +90,75 @@
                                         </a>
                                     @endcan
                                     @can('permission_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.permissions.index') }}">
+                                        <a class="dropdown-item ml-3" href="{{ route('user.permissions.index') }}">
                                             {{ trans('cruds.permission.title') }}
                                         </a>
                                     @endcan
                                     @can('role_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.roles.index') }}">
+                                        <a class="dropdown-item ml-3" href="{{ route('user.roles.index') }}">
                                             {{ trans('cruds.role.title') }}
                                         </a>
                                     @endcan
                                     @can('user_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.users.index') }}">
+                                        <a class="dropdown-item ml-3" href="{{ route('user.users.index') }}">
                                             {{ trans('cruds.user.title') }}
                                         </a>
                                     @endcan
                                     @can('management_mahasiswa_access')
                                         <a class="dropdown-item disabled" href="#">
-                                            Management Identitas Mahasiswas
+                                            Pendaftaran dan Pelaksanaan Sidang Sarjana Fakultas MIPA
                                         </a>
                                     @endcan
                                     @can('mahasiswa_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.mahasiswas.index') }}">
+                                        <a class="dropdown-item ml-3" href="{{ route('user.mahasiswas.index') }}">
                                             Identitas Mahasiswa
                                         </a>
                                     @endcan
                                     @can('orangtua_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.orangtuas.index') }}">
+                                        <a class="dropdown-item ml-3" href="{{ route('user.orangtuas.index') }}">
                                             Data Orang Tua
                                         </a>
                                     @endcan
                                     @can('syarat_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.syarats.index') }}">
-                                            Data Syarat Sidang
+                                        <a class="dropdown-item ml-3" href="{{ route('user.syarats.index') }}">
+                                            Dokumen Persyaratan Sidang
                                         </a>
                                     @endcan
                                     @can('pembimbing_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.pembimbings.index') }}">
-                                            {{ trans('cruds.pembimbing.title') }}
+                                        <a class="dropdown-item ml-3" href="{{ route('user.pembimbings.index') }}">
+                                            Data Pembimbing Skripsi
                                         </a>
                                     @endcan
+                                    @can('dosenpembimbing_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('dosen.pembimbings.index') }}">
+                                            Daftar Mahasiswa
+                                        </a>
+                                    @endcan
+                                    {{-- @can('dosenpenguji_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('dosen.pengujis.index') }}">
+                                            Penguji
+                                        </a>
+                                    @endcan --}}
                                     @can('penguji_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.pengujis.index') }}">
-                                            {{ trans('cruds.penguji.title') }}
+                                        <a class="dropdown-item ml-3" href="{{ route('user.pengujis.index') }}">
+                                            Data Penguji Sidang
                                         </a>
                                     @endcan
-                                    @can('dosen_managemant_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.dosenManagemant.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('dosen_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.dosens.index') }}">
-                                            {{ trans('cruds.dosen.title') }}
+                                    
+                                    @can('skpi_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('user.skpis.index') }}">
+                                            Data SKPI
                                         </a>
                                     @endcan
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -155,7 +170,7 @@
         </nav>
 
         <main class="py-4">
-            @if(session('message'))
+            @if (session('message'))
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -164,16 +179,27 @@
                     </div>
                 </div>
             @endif
-            @if($errors->count() > 0)
+            @if ($errors->count() > 0)
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="alert alert-danger">
                                 <ul class="list-unstyled mb-0">
-                                    @foreach($errors->all() as $error)
+                                    @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-success">
+                                {{ session()->get('success') }}
                             </div>
                         </div>
                     </div>
@@ -200,7 +226,9 @@
 <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js">
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>

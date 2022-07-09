@@ -62,7 +62,7 @@
                         <i class="fa-fw fas fa-users">
 
                         </i>
-                        <span>Management Mahasiswa</span>
+                        <span>Sidang Sarjana FMIPA</span>
                         <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
@@ -85,7 +85,7 @@
                                     <i class="fa-fw fas fa-user-friends">
 
                                     </i>
-                                    <span>Data Orang Tua</span>
+                                    <span>Identitas Orang Tua</span>
 
                                 </a>
                             </li>
@@ -97,7 +97,29 @@
                                     <i class="fa-fw fas fa-user-friends">
 
                                     </i>
-                                    <span>Data Syarat Sidang</span>
+                                    <span>Dokumen Persyaratan Sidang</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('nilai_access')
+                            <li class="{{ request()->is("admin/nilais") || request()->is("admin/nilais/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.nilais.index") }}">
+                                    <i class="fa-fw fas fa-address-book">
+
+                                    </i>
+                                    <span>Penilaian</span>
+
+                                </a>
+                            </li>
+                        @endcan
+                        @can('skpi_access')
+                            <li class="{{ request()->is("admin/skpis") || request()->is("admin/skpis/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.skpis.index") }}">
+                                    <i class="fa-fw fas fa-address-book">
+
+                                    </i>
+                                    <span>Data SKPI</span>
 
                                 </a>
                             </li>

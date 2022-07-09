@@ -18,6 +18,7 @@ class User extends Authenticatable
     use SoftDeletes;
     use Notifiable;
     use HasFactory;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     public $table = 'users';
 
@@ -46,6 +47,14 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+    public function getIsSuperadminAttribute()
+    {
+        return $this->roles()->where('id', 3)->exists();
+    }
+    public function getIsDosenAttribute()
+    {
+        return $this->roles()->where('id', 4)->exists();
     }
     public function getEmailVerifiedAtAttribute($value)
     {
@@ -77,6 +86,20 @@ class User extends Authenticatable
     public function mahasiswa()
     {
         return $this->hasOne(Mahasiswa::class);
+    }
+
+    public function mahasiswas()
+    {
+        return $this->belongsToMany(Mahasiswa::class, 'mahasiswa_user', 'user_id', 'mahasiswa_id');
+    }
+    
+    public function mahsiswapenguji()
+    {
+        return $this->belongsToMany(Mahasiswa::class, 'penguji', 'user_id', 'mahasiswa_id');
+    }
+    public function nilaipenguji()
+    {
+        return $this->hasManyThrough(Nilai::class, Mahasiswa::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)
