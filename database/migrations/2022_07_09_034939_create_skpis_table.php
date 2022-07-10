@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('skpis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kualifikasi');
-            $table->string('kegiatan');
-            $table->string('keterangan');
+            $table->text('kualifikasi');
+            $table->text('kegiatan');
             $table->timestamps();
             $table->softDeletes();
         });

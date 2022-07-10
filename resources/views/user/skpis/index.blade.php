@@ -3,6 +3,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="text-danger">PERHATIAN!!</h3>
+                </div>
+                <div class="card-body">
+                    <li class="list-group-item"><p class="text-danger">Dokumen SKPI Yang Dimasukan Meliputi</p></li>
+                    <ul class="list-group">
+                        <li class="list-group-item">1)	Pengurus Lembaga Kemahasiswaan atau organisasi Kemahasiswaan (bukti sertifikat)</li>
+                        <li class="list-group-item">2)	Kepanitian kegiatan: ketua, sekretaris, bendahara, koordinator bidang, anggota panitia (maksimal 5 kegiatan)  (bukti sertifikat)</li>
+                        <li class="list-group-item">3)	Prestasi mengikuti kegiatan  disertai bukti pendukung (Piagam pengahargaan )</li>
+                        <li class="list-group-item">4)	Pemakalah dalam kegaiatn seminar yang disertai bukti pendukung (bukti sertifikat)</li>
+                        <li class="list-group-item">5)	Peserta pelatihan atau workshop yang disertai bukti pendukung(bukti sertifikat)</li>
+                        <li class="list-group-item">6)	Peserta dalam seminar/webinar tingkat nasional/internasional  (bukti sertifikat)</li>
+                        <li class="list-group-item">7)	Magang/Kuliah praktik/Kuliah Kerja Lapangan yang disertai bukti pendukung (bukti sertifikat)</li>
+                        <li class="list-group-item">8)	Kegiatan MBKM (bukti sertifikat)</li>
+                        <li class="list-group-item">9)	Anggota penelitian/PKM dosen  yang disertai dengan bukti lembar pengesahan (bukti lembar pengesahan)</li>
+                        <li class="list-group-item">10)	Menghasilkan publikasi ilmiah baik di jurnal atau book chapter (bukti artikel yang sudah dipublikasi)</li>
+                        <li class="list-group-item">11)	Melaksanaan program kreatifitas mahasiswa (bukti laporan)</li>
+                        <li class="list-group-item">12)	Asisten laboratorium (bukti sertifikat)</li>
+                    </ul>
+                </div>
+            </div>
             @can('skpi_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
@@ -16,7 +38,7 @@
                 <div class="card-header">
                     Daftar Skpi
                 </div>
-
+                
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class=" table table-bordered table-striped table-hover datatable datatable-Skpi">

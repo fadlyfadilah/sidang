@@ -64,9 +64,11 @@ class SkpiController extends Controller
         return view('user.skpis.edit', compact('namas', 'skpi'));
     }
 
-    public function update(UpdateSkpiRequest $request, Skpi $skpi)
+    public function update(Request $request, Skpi $skpi)
     {
-        $skpi->update($request->all());
+        $attr = $request->all();
+        $attr['nama_id'] = auth()->user()->id;
+        $skpi->update($attr);
 
         if (count($skpi->file) > 0) {
             foreach ($skpi->file as $media) {

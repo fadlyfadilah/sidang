@@ -121,7 +121,54 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Sertifikat Calon Sarjana
+                                            Sertifikat PPMB
+                                        </th>
+                                        <td>
+                                            <a href="{{ asset("/storage/".$syarat->ppmb) }}">{{ $syarat->ppmb }}</a>
+                                        </td>
+                                        <td>
+                                            @if ($syarat->ppmbstatus == 0)
+                                                <div>
+                                                    <i class="fa-2x fas fa-ellipsis-h"></i>
+                                                </div>
+                                                <div>
+                                                    <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                        enctype="multipart/form-data" method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="ppmbstatus"
+                                                                id="ppmbstatus">
+                                                                <option selected hidden>Pilih Salah Satu!</option>
+                                                                <option value="1">Tolak</option>
+                                                                <option value="2">Setujui</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                    </form>
+                                                </div>
+                                            @elseif ($syarat->ppmbstatus == 1)
+                                            <div class="d-flex">
+                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div>
+                                                    <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                        enctype="multipart/form-data" method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <input type="hidden" name="ppmbstatus" value="2">
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            @elseif ($syarat->ppmbstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            Sertifikat Pesantren Calon Sarjana
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->serticalonsarjana) }}">{{ $syarat->serticalonsarjana }}</a>
@@ -215,7 +262,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Sertifikat PPMB
+                                            Sertifikat Pesantren MABA
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->sertimaba) }}">{{ $syarat->sertimaba }}</a>
@@ -309,7 +356,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Transkrip Nilai
+                                            File Transkrip Nilai
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->transkrip) }}">{{ $syarat->transkrip }}</a>
@@ -356,7 +403,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Bukti Pembayaran Biaya Sidang
+                                            Bukti Pembayaran Biaya Sidang Sarjana
                                         </th>
                                         <td>
                                             <a href="{{ asset("/storage/".$syarat->pembayaran) }}">{{ $syarat->pembayaran }}</a>

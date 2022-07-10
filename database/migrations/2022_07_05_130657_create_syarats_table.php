@@ -19,6 +19,8 @@ return new class extends Migration
             $table->enum('skripsistatus', ['0','1','2'])->default('0');
             $table->string('photo');
             $table->enum('photostatus', ['0','1','2'])->default('0');
+            $table->string('ppmb');
+            $table->enum('ppmbstatus', ['0','1','2'])->default('0');
             $table->string('serticalonsarjana');
             $table->enum('serticalonsarjanastatus', ['0','1','2'])->default('0');
             $table->string('sertibebasperpus');

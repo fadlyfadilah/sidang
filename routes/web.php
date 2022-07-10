@@ -19,6 +19,7 @@ use App\Http\Controllers\Dosen\PembimbingController as DosenPembimbingController
 use App\Http\Controllers\Dosen\NilaiController;
 use App\Http\Controllers\User\PengujiController as UserPengujiController;
 use App\Http\Controllers\Dosen\PengujiController as DosenPengujiController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SkpiController as UserSkpiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login');
 
 Auth::routes();
-Route::delete('skpis/destroy', [SkpiController::class, 'massDestroy'])->name('skpis.massDestroy');
-Route::post('skpis/media', [SkpiController::class ,'storeMedia'])->name('skpis.storeMedia');
-Route::post('skpis/ckmedia', [SkpiController::class ,'storeCKEditorImages'])->name('skpis.storeCKEditorImages');
-Route::resource('skpis', SkpiController::class);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -57,8 +54,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
     Route::resource('syarats', SyaratController::class)->except('update');
     Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
-
+    
     // Skpi
+    Route::delete('skpis/destroy', [SkpiController::class, 'massDestroy'])->name('skpis.massDestroy');
+    Route::post('skpis/media', [SkpiController::class ,'storeMedia'])->name('skpis.storeMedia');
+    Route::post('skpis/ckmedia', [SkpiController::class ,'storeCKEditorImages'])->name('skpis.storeCKEditorImages');
+    Route::resource('skpis', SkpiController::class);
 
     Route::resource('nilais', AdminNilaiController::class);
 
@@ -95,10 +96,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], fu
     Route::post('skpis/ckmedia', [UserSkpiController::class ,'storeCKEditorImages'])->name('skpis.storeCKEditorImages');
     Route::resource('skpis', UserSkpiController::class);
     
-    Route::get('user/profile', 'ProfileController@index')->name('profile.index');
-    Route::post('user/profile', 'ProfileController@update')->name('profile.update');
-    Route::post('user/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
-    Route::post('user/profile/password', 'ProfileController@password')->name('profile.password');
+    Route::get('user/profile', [ProfileController::class ,'index'])->name('profile.index');
+    Route::post('user/profile', [ProfileController::class ,'update'])->name('profile.update');
+    Route::post('user/profile/destroy', [ProfileController::class ,'destroy'])->name('profile.destroy');
+    Route::post('user/profile/password', [ProfileController::class ,'password'])->name('profile.password');
 });
 
 Route::group(['prefix' => 'dosen', 'as' => 'dosen.', 'middleware' => ['auth']], function () {
@@ -121,8 +122,8 @@ Route::group(['prefix' => 'dosen', 'as' => 'dosen.', 'middleware' => ['auth']], 
     // Nilai
     Route::resource('nilais', NilaiController::class);
     
-    Route::get('user/profile', 'ProfileController@index')->name('profile.index');
-    Route::post('user/profile', 'ProfileController@update')->name('profile.update');
-    Route::post('user/profile/destroy', 'ProfileController@destroy')->name('profile.destroy');
-    Route::post('user/profile/password', 'ProfileController@password')->name('profile.password');
+    Route::get('user/profile', [ProfileController::class ,'index'])->name('profile.index');
+    Route::post('user/profile', [ProfileController::class ,'update'])->name('profile.update');
+    Route::post('user/profile/destroy', [ProfileController::class ,'destroy'])->name('profile.destroy');
+    Route::post('user/profile/password', [ProfileController::class ,'password'])->name('profile.password');
 });

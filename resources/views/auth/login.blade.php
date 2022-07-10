@@ -1,7 +1,15 @@
 @extends('layouts.app')
+@section('styles')
+<style>
+    body{
+        background-image: url({{ asset('img/back.png') }});
+    }
+</style>
+@endsection
 @section('content')
 <div class="login-box">
     <div class="login-logo">
+        <img width="128px" src="{{ asset('img/logo_unisba.png') }}" alt=""></br>
         <a href="{{ route('admin.home') }}">
             Sistem Sidang Sarjana
         </a>

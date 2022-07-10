@@ -46,15 +46,15 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
-        return $this->roles()->where('id', 1)->exists();
+        return $this->roles()->where('id', 2)->exists();
     }
     public function getIsSuperadminAttribute()
     {
-        return $this->roles()->where('id', 3)->exists();
+        return $this->roles()->where('id', 1)->exists();
     }
     public function getIsDosenAttribute()
     {
-        return $this->roles()->where('id', 4)->exists();
+        return $this->roles()->where('id', 3)->exists();
     }
     public function getEmailVerifiedAtAttribute($value)
     {

@@ -14,8 +14,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <p class="text-center">
+                        <img width="128px" src="{{ asset('img/logo_unisba.png') }}" alt="">
+                    </p>
 
-                    You are logged in!
+                    <h2 class="text-center">SELAMAT DATANG DI SISTEM SIDANG SARJANA </br> FAKULTAS MIPA </br> UNIVERSITAS ISLAM BANDUNG</h2>
                 </div>
             </div>
         </div>

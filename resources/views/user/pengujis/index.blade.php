@@ -45,19 +45,11 @@
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-striped">
-                                    <tr>
-                                        @foreach ($mahasiswa->userpenguji as $dosen)
+                                    @foreach ($mahasiswa->userpenguji as $dosen)
+                                        <tr>
                                             <td>{{ $dosen->name }}</td>
-                                        @endforeach
-                                    </tr>
-                                    <tr>
-                                        @foreach ($nilais as $as)
-                                            <td>{{ $as->nilai }}</td>
-                                        @endforeach
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" colspan="4">Rata - Rata: {{ $nilaiavg }}</td>
-                                    </tr>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

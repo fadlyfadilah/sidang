@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>System Sidang Sarjana</title>
+    <title>Sistem Sidang Sarjana</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,15 +31,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css"
         rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ asset('img/logo_unisba.png') }}" type="image/x-icon">
+    <style>
+        body{
+            background-image: url({{ asset('img/back.png') }});
+        }
+    </style>
     @yield('styles')
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #004675;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    System Sidang Sarjana
+                    Sistem Sidang Sarjana
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

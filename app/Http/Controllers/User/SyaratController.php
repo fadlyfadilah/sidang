@@ -65,6 +65,20 @@ class SyaratController extends Controller
         } else {
             $photoUrl = $syarat->photo;
         }
+
+        if (request()->file('ppmb')) {
+            if ($syarat === null) {
+                $ppmb = request()->file('ppmb');
+                $ppmbUrl = $ppmb->storeAs('file/syarat/ppmb', "{$number}ppmb.{$ppmb->extension()}");
+            } else {
+                Storage::delete($syarat->ppmb);
+                $ppmb = request()->file('ppmb');
+                $ppmbUrl = $ppmb->storeAs('file/syarat/ppmb', "{$number}ppmb.{$ppmb->extension()}");
+            }
+        } else {
+            $ppmbUrl = $syarat->ppmb;
+        }
+
         if (request()->file('serticalonsarjana')) {
             if ($syarat === null) {
                 $serticalonsarjana = request()->file('serticalonsarjana');
@@ -142,6 +156,7 @@ class SyaratController extends Controller
         ], [
             'skripsi'     => $skripsiUrl,
             'photo' => $photoUrl,
+            'ppmb'    => $ppmbUrl,
             'serticalonsarjana'    => $serticalonsarjanaUrl,
             'sertibebasperpus'   => $sertibebasperpusUrl,
             'sertimaba'       => $sertimabaUrl,

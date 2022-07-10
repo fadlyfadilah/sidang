@@ -63,7 +63,7 @@
                                     </th>
                                     <td>
                                         @foreach($skpi->file as $key => $media)
-                                            <a href="{{ $media->getUrl() }}" target="_blank">
+                                            <a href="https://{{ $media->getUrl() }}" target="_blank">
                                                 {{ trans('global.view_file') }}
                                             </a>
                                         @endforeach
