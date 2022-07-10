@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Data Orang Tua
+                    Daftar Data Nilai
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">

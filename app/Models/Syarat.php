@@ -16,6 +16,8 @@ class Syarat extends Model
         'skripsistatus' ,   
         'photo' ,   
         'photostatus' ,   
+        'ppmb' ,   
+        'ppmbstatus' ,    
         'serticalonsarjana' ,   
         'serticalonsarjanastatus' ,   
         'sertibebasperpus' ,   
