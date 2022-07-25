@@ -57,7 +57,7 @@
                                             {{ $skpi->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $skpi->nama->name ?? '' }}
+                                            {{ $skpi->nama->nik ?? '' }}
                                         </td>
                                         <td>
                                             {{ $skpi->kualifikasi ?? '' }}

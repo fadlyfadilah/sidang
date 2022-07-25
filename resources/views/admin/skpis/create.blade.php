@@ -24,28 +24,16 @@
                         </div>
                         <div class="form-group {{ $errors->has('kualifikasi') ? 'has-error' : '' }}">
                             <label class="required" for="kualifikasi">Nama Kegiatan (Bahasa Indonesia)</label>
-                            <input class="form-control" type="text" name="kualifikasi" id="kualifikasi" value="{{ old('kualifikasi', '') }}" required>
+                            <textarea class="form-control" type="text" name="kualifikasi" id="kualifikasi" value="{{ old('kualifikasi', '') }}" required></textarea>
                             @if($errors->has('kualifikasi'))
                                 <span class="help-block" role="alert">{{ $errors->first('kualifikasi') }}</span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('kegiatan') ? 'has-error' : '' }}">
                             <label class="required" for="kegiatan">Nama Kegiatan (Bahasa Inggris)</label>
-                            <input class="form-control" type="text" name="kegiatan" id="kegiatan" value="{{ old('kegiatan', '') }}" required>
+                            <textarea class="form-control" type="text" name="kegiatan" id="kegiatan" value="{{ old('kegiatan', '') }}" required></textarea>
                             @if($errors->has('kegiatan'))
                                 <span class="help-block" role="alert">{{ $errors->first('kegiatan') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group {{ $errors->has('keterangan') ? 'has-error' : '' }}">
-                            <label class="required">Keterangan</label>
-                            <select class="form-control" name="keterangan" id="keterangan" required>
-                                <option value disabled {{ old('keterangan', null) === null ? 'selected' : '' }}>Pilih Salah Satu!</option>
-                                @foreach(App\Models\Skpi::KETERANGAN_SELECT as $key => $label)
-                                    <option value="{{ $key }}" {{ old('keterangan', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('keterangan'))
-                                <span class="help-block" role="alert">{{ $errors->first('keterangan') }}</span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('file') ? 'has-error' : '' }}">

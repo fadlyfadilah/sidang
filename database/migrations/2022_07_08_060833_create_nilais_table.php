@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('nilai');
+            $table->double('nilai');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,10 +15,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SyaratController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('syarat_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $status = $request['status'];
+        if ($status == 'Terverifikasi Admin Fakultas') {
+            $syarats = Syarat::with('mahasiswa')->where('status', $status)->get();
+            return view('admin.syarats.index', compact('syarats'));
+        } elseif ($status == 'Terverifikasi Dengan Perbaikan') {
+            $syarats = Syarat::with('mahasiswa')->where('status', $status)->get();
+            return view('admin.syarats.index', compact('syarats'));
+        } elseif ($status == 'Disetujui Kasie Akademik') {
+            $syarats = Syarat::with('mahasiswa')->where('status', $status)->get();
+            return view('admin.syarats.index', compact('syarats'));
+        }elseif ($status == 'Disetujui Wakil Dekan 1') {
+            $syarats = Syarat::with('mahasiswa')->where('status', $status)->get();
+            return view('admin.syarats.index', compact('syarats'));
+        }elseif ($status == 'Belum Terverifikasi') {
+            $syarats = Syarat::with('mahasiswa')->where('status', $status)->get();
+            return view('admin.syarats.index', compact('syarats'));
+        }
         $syarats = Syarat::with(['mahasiswa'])->get();
 
         return view('admin.syarats.index', compact('syarats'));
@@ -65,7 +82,7 @@ class SyaratController extends Controller
         $syarat['pembayaran'] = $pembayaranUrl;
 
         Syarat::create($syarat);
-        
+
         return redirect()->route('admin.syarats.index');
     }
 
@@ -75,7 +92,7 @@ class SyaratController extends Controller
 
         $mahasiswas = Mahasiswa::with(['user' => function ($query) {
             $query->pluck('name', 'nik');
-        }])->get(); 
+        }])->get();
 
         $syarat->load('mahasiswa');
 

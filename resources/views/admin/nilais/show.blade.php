@@ -17,8 +17,14 @@
                             </div>
                             <table class="table table-bordered table-striped">
                                 <tr>
+                                    @foreach ($namas as $nama)
+                                        <td colspan="2">{{ $nama->mahasiswa->user->name }}</td>
+                                        <td colspan="2">{{ $nama->mahasiswa->user->nik }}</td>
+                                    @endforeach
+                                </tr>
+                                <tr>
                                     @foreach ($nilais as $nilai)
-                                            <td>{{ $nilai->user->name }}</td>
+                                        <td>{{ $nilai->user->name }}</td>
                                     @endforeach
                                 </tr>
                                 <tr>

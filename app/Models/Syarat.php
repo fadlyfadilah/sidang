@@ -33,6 +33,7 @@ class Syarat extends Model
         'status' ,   
         'feedback' ,   
         'mahasiswa_id' ,   
+        'judul' ,   
     ];
 
     public function mahasiswa()

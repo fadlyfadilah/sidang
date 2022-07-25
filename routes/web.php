@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     // Syarat
     Route::delete('syarats/destroy', [SyaratController::class, 'massDestroy'])->name('syarats.massDestroy');
     Route::resource('syarats', SyaratController::class)->except('update');
+    Route::post('syarats', [SyaratController::class, 'index'])->name('syarats.indexx');
     Route::patch('syarats/update/{syarat}', [SyaratController::class, 'update'])->name('syarats.update');
     
     // Skpi

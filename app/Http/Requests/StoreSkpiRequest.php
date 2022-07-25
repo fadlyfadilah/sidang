@@ -28,10 +28,7 @@ class StoreSkpiRequest extends FormRequest
             'kegiatan' => [
                 'string',
                 'required',
-            ],
-            'keterangan' => [
-                'required',
-            ],
+            ]
         ];
     }
 }

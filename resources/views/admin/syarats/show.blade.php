@@ -30,7 +30,8 @@
                                             File Skripsi (Sudah Ditandatangani Pembimbing)
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->skripsi) }}">{{ $syarat->skripsi }}</a>
+                                            <a
+                                                target="_blank" href="{{ asset('/storage/' . $syarat->skripsi) }}">{{ $syarat->skripsi }}</a>
                                         </td>
                                         <td class="d-flex">
                                             @if ($syarat->skripsistatus == 0)
@@ -54,69 +55,39 @@
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->skripsistatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="skripsistatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->skripsistatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="skripsistatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="skripsistatus" value="1">
+                                                        <button class="btn btn-danger btn-sm" type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->skripsistatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            Pas Photo (format .jpg/.png)
+                                            Nama Skripsi
                                         </th>
-                                        <td>
-                                            <img width="128px" src="{{ asset("/storage/".$syarat->photo ?? '') }}" alt="">
-                                        </td>
-                                        <td class="d-flex">
-                                            @if ($syarat->photostatus == 0)
-                                                <div>
-                                                    <i class="fa-2x fas fa-ellipsis-h"></i>
-                                                </div>
-                                                <div>
-                                                    <form action="{{ route('admin.syarats.update', $syarat->id) }}"
-                                                        enctype="multipart/form-data" method="post">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <div class="form-group">
-                                                            <select class="form-control" name="photostatus"
-                                                                id="photostatus">
-                                                                <option selected hidden>Pilih Salah Satu!</option>
-                                                                <option value="1">Tolak</option>
-                                                                <option value="2">Setujui</option>
-                                                            </select>
-                                                        </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
-                                                    </form>
-                                                </div>
-                                            @elseif ($syarat->photostatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
-                                                <div>
-                                                    <form action="{{ route('admin.syarats.update', $syarat->id) }}"
-                                                        enctype="multipart/form-data" method="post">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <input type="hidden" name="photostatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            @elseif ($syarat->photostatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
-                                            @endif
+                                        <td colspan="2">
+                                            {{ $syarat->judul ?? '' }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -124,7 +95,7 @@
                                             Sertifikat PPMB
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->ppmb) }}">{{ $syarat->ppmb }}</a>
+                                            <a href="{{ asset('/storage/' . $syarat->ppmb) }}">{{ $syarat->ppmb }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->ppmbstatus == 0)
@@ -144,25 +115,36 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->ppmbstatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="ppmbstatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->ppmbstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="ppmbstatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="ppmbstatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->ppmbstatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -171,7 +153,8 @@
                                             Sertifikat Pesantren Calon Sarjana
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->serticalonsarjana) }}">{{ $syarat->serticalonsarjana }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->serticalonsarjana) }}">{{ $syarat->serticalonsarjana }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->serticalonsarjanastatus == 0)
@@ -191,25 +174,37 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->serticalonsarjanastatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="serticalonsarjanastatus"
+                                                                value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->serticalonsarjanastatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="serticalonsarjanastatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="serticalonsarjanastatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->serticalonsarjanastatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -218,7 +213,8 @@
                                             Surat Keterangan Bebas Perpustakaan Universitas
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->sertibebasperpus) }}">{{ $syarat->sertibebasperpus }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->sertibebasperpus) }}">{{ $syarat->sertibebasperpus }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->sertibebasperpusstatus == 0)
@@ -238,25 +234,37 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->sertibebasperpusstatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="sertibebasperpusstatus"
+                                                                value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->sertibebasperpusstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="sertibebasperpusstatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="sertibebasperpusstatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->sertibebasperpusstatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -265,7 +273,8 @@
                                             Sertifikat Pesantren MABA
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->sertimaba) }}">{{ $syarat->sertimaba }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->sertimaba) }}" target="_blank">{{ $syarat->sertimaba }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->sertimabastatus == 0)
@@ -285,25 +294,36 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->sertimabastatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="sertimabastatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->sertimabastatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="sertimabastatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="sertimabastatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->sertimabastatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -312,7 +332,8 @@
                                             Surat Keterangan Bebas Peminjaman Alat Laboratorium
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->bebaslab) }}">{{ $syarat->bebaslab }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->bebaslab) }}" target="_blank">{{ $syarat->bebaslab }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->bebaslabstatus == 0)
@@ -332,25 +353,36 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->bebaslabstatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="bebaslabstatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->bebaslabstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="bebaslabstatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="bebaslabstatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->bebaslabstatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -359,7 +391,8 @@
                                             File Transkrip Nilai
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->transkrip) }}">{{ $syarat->transkrip }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->transkrip) }}">{{ $syarat->transkrip }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->transkripstatus == 0)
@@ -379,25 +412,36 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->transkripstatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="transkripstatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->transkripstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="transkripstatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="transkripstatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->transkripstatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -406,7 +450,8 @@
                                             Bukti Pembayaran Biaya Sidang Sarjana
                                         </th>
                                         <td>
-                                            <a href="{{ asset("/storage/".$syarat->pembayaran) }}">{{ $syarat->pembayaran }}</a>
+                                            <a
+                                                href="{{ asset('/storage/' . $syarat->pembayaran) }}">{{ $syarat->pembayaran }}</a>
                                         </td>
                                         <td>
                                             @if ($syarat->pembayaranstatus == 0)
@@ -426,25 +471,36 @@
                                                                 <option value="2">Setujui</option>
                                                             </select>
                                                         </div>
-                                                        <button class="btn btn-success btn-sm" type="submit">Verif</button>
+                                                        <button class="btn btn-success btn-sm"
+                                                            type="submit">Verif</button>
                                                     </form>
                                                 </div>
                                             @elseif ($syarat->pembayaranstatus == 1)
-                                            <div class="d-flex">
-                                                <i class="fa-2x fas fa-times text-danger"></i>
+                                                <div class="d-flex">
+                                                    <i class="fa-2x fas fa-times text-danger"></i>
+                                                    <div>
+                                                        <form action="{{ route('admin.syarats.update', $syarat->id) }}"
+                                                            enctype="multipart/form-data" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <input type="hidden" name="pembayaranstatus" value="2">
+                                                            <button class="btn btn-success btn-sm"
+                                                                type="submit">Verif</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @elseif ($syarat->pembayaranstatus == 2)
+                                                <i class="fas fa-check fa-2x text-success"></i>
                                                 <div>
                                                     <form action="{{ route('admin.syarats.update', $syarat->id) }}"
                                                         enctype="multipart/form-data" method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="pembayaranstatus" value="2">
-                                                        <button class="btn btn-success btn-sm"
-                                                            type="submit">Verif</button>
+                                                        <input type="hidden" name="pembayaranstatus" value="1">
+                                                        <button class="btn btn-danger btn-sm"
+                                                            type="submit">Tolak</button>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            @elseif ($syarat->pembayaranstatus == 2)
-                                                <i class="fas fa-check fa-2x text-success"></i>
                                             @endif
                                         </td>
                                     </tr>
@@ -458,23 +514,18 @@
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
-                                            <option {{ old('status', '') === (string) $syarat->status ? 'selected' : '' }} value="{{ $syarat->status }}">{{ $syarat->status }}</option>
-                                            <option value="Terverifikasi Admin Fakultas">Terverifikasi Admin Fakultas</option>
+                                            <option
+                                                {{ old('status', '') === (string) $syarat->status ? 'selected' : '' }}
+                                                value="{{ $syarat->status }}">{{ $syarat->status }}</option>
+                                            <option value="Terverifikasi Admin Fakultas">Terverifikasi Admin Fakultas
+                                            </option>
                                             <option value="Disetujui Kasie Akademik">Disetujui Kasie Akademik</option>
                                             <option value="Disetujui Wakil Dekan 1">Disetujui Wakil Dekan 1</option>
                                         </select>
                                     </div>
-                                    <button class="mb-3 btn btn-success btn-sm" type="submit">Kirim</button>
-                                </form>
-                            </div>
-                            <div class="form-group">
-                                <form action="{{ route('admin.syarats.update', $syarat->id) }}"
-                                    enctype="multipart/form-data" method="post">
-                                    @csrf
-                                    @method('PATCH')
                                     <div class="form-group">
                                         <label for="feedback">Feedback</label>
-                                        <textarea class="form-control" name="feedback" id="feedback" rows="3"></textarea>
+                                        <textarea class="form-control" name="feedback" id="feedback" rows="3">{{ $syarat->feedback }}</textarea>
                                     </div>
                                     <button class="mb-3 btn btn-success btn-sm" type="submit">Kirim</button>
                                 </form>

@@ -20,7 +20,7 @@
                                 <tr>
                                     <th>
                                         <div class="form-group {{ $errors->has('skripsi') ? 'has-error' : '' }}">
-                                            <label for="skripsi">File Skripsi (Sudah Ditandatangani Pembimbing)  </label>
+                                            <label for="skripsi">File Skripsi (Sudah Ditandatangani Pembimbing) </label>
                                             <input class="form-control-file" type="file" name="skripsi" id="skripsi"
                                                 value="{{ old('skripsi', '') }}">
                                             @if ($errors->has('skripsi'))
@@ -51,6 +51,35 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @if ($syarat === null)
+                                    <tr>
+                                        <th colspan="3">
+                                            <div class="form-group {{ $errors->has('judul') ? 'has-error' : '' }}">
+                                                <label for="judul">Judul Skripsi</label>
+                                                <input class="form-control" type="text" name="judul" id="judul"
+                                                    value="{{ old('judul', '') }}">
+                                                @if ($errors->has('judul'))
+                                                    <span class="help-block"
+                                                        role="alert">{{ $errors->first('judul') }}</span>
+                                                @endif
+                                            </div>
+                                        </th>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <th colspan="3">
+                                            <div class="form-group {{ $errors->has('judul') ? 'has-error' : '' }}">
+                                                <label for="judul">Judul Skripsi</label>
+                                                <input class="form-control" type="text" name="judul" id="judul"
+                                                    value="{{ old('judul', $syarat->judul) }}">
+                                                @if ($errors->has('judul'))
+                                                    <span class="help-block"
+                                                        role="alert">{{ $errors->first('judul') }}</span>
+                                                @endif
+                                            </div>
+                                        </th>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <th>
                                         <div class="form-group {{ $errors->has('photo') ? 'has-error' : '' }}">
@@ -87,11 +116,10 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <div
-                                            class="form-group {{ $errors->has('ppmb') ? 'has-error' : '' }}">
+                                        <div class="form-group {{ $errors->has('ppmb') ? 'has-error' : '' }}">
                                             <label for="ppmb">Sertifikat PPMB</label>
-                                            <input class="form-control-file" type="file" name="ppmb"
-                                                id="ppmb" value="{{ old('ppmb', '') }}">
+                                            <input class="form-control-file" type="file" name="ppmb" id="ppmb"
+                                                value="{{ old('ppmb', '') }}">
                                             @if ($errors->has('ppmb'))
                                                 <span class="help-block"
                                                     role="alert">{{ $errors->first('ppmb') }}</span>
@@ -102,8 +130,7 @@
                                         @if ($syarat === null)
                                             <a href="#"></a>
                                         @else
-                                            <a
-                                                href="{{ asset('/storage/' . $syarat->ppmb) }}">{{ $syarat->ppmb }}</a>
+                                            <a href="{{ asset('/storage/' . $syarat->ppmb) }}">{{ $syarat->ppmb }}</a>
                                         @endif
                                     </td>
                                     <td>
@@ -160,7 +187,8 @@
                                     <th>
                                         <div
                                             class="form-group {{ $errors->has('sertibebasperpus') ? 'has-error' : '' }}">
-                                            <label for="sertibebasperpus">Surat Keterangan Bebas Perpustakaan Universitas </label>
+                                            <label for="sertibebasperpus">Surat Keterangan Bebas Perpustakaan Universitas
+                                            </label>
                                             <input class="form-control-file" type="file" name="sertibebasperpus"
                                                 id="sertibebasperpus" value="{{ old('sertibebasperpus', '') }}">
                                             @if ($errors->has('sertibebasperpus'))
@@ -195,8 +223,8 @@
                                     <th>
                                         <div class="form-group {{ $errors->has('sertimaba') ? 'has-error' : '' }}">
                                             <label for="sertimaba">Sertifikat Pesantren Maba</label>
-                                            <input class="form-control-file" type="file" name="sertimaba" id="sertimaba"
-                                                value="{{ old('sertimaba', '') }}">
+                                            <input class="form-control-file" type="file" name="sertimaba"
+                                                id="sertimaba" value="{{ old('sertimaba', '') }}">
                                             @if ($errors->has('sertimaba'))
                                                 <span class="help-block"
                                                     role="alert">{{ $errors->first('sertimaba') }}</span>
@@ -228,7 +256,8 @@
                                 <tr>
                                     <th>
                                         <div class="form-group {{ $errors->has('bebaslab') ? 'has-error' : '' }}">
-                                            <label class="" for="bebaslab">Surat Keterangan Bebas Peminjaman Alat Laboratorium </label>
+                                            <label class="" for="bebaslab">Surat Keterangan Bebas Peminjaman Alat
+                                                Laboratorium </label>
                                             <input class="form-control-file" type="file" name="bebaslab"
                                                 id="bebaslab" value="{{ old('bebaslab', '') }}">
                                             @if ($errors->has('bebaslab'))

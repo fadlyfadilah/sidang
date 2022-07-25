@@ -74,9 +74,9 @@
                                                     method="post">
                                                     @csrf
                                                     <input type="hidden" name="mahasiswa_id" value="{{ $mhs->id }}">
-                                                    <div class="form-group mb-2">
+                                                    <div class="form-group mb-2 ">
                                                         <label for="nilai" class="sr-only">Nilai</label>
-                                                        <input type="text" class="form-control-plaintext" id="nilai"
+                                                        <input type="text" class="form-control-plaintext border border-primary" id="nilai"
                                                             name="nilai" value="">
                                                     </div>
                                                     <button type="submit" class="btn btn-primary mb-2">Simpan</button>

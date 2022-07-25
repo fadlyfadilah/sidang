@@ -20,6 +20,7 @@ class NilaiController extends Controller
         abort_if(Gate::denies('nilai_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $nilais = Mahasiswa::whereHas('mahasiswaNilais')->get();
+        // dd($nilais);
         return view('admin.nilais.index', compact('nilais'));
     }
 
@@ -74,8 +75,9 @@ class NilaiController extends Controller
 
         $nilais = Nilai::with(['user', 'mahasiswa'])->where('mahasiswa_id', $id)->get();
         $nilaiavg = Nilai::where('mahasiswa_id', $id)->pluck('nilai')->avg();
-
-        return view('admin.nilais.show', compact('nilais', 'nilaiavg'));
+        $nilai = Nilai::with(['mahasiswa'])->where('mahasiswa_id', $id)->get();
+        $namas = $nilai->unique('mahasiswa_id')->values()->all();
+        return view('admin.nilais.show', compact('nilais', 'nilaiavg', 'namas'));
     }
 
     public function destroy(Nilai $nilai)
