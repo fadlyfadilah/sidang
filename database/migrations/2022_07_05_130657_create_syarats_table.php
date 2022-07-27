@@ -15,23 +15,24 @@ return new class extends Migration
     {
         Schema::create('syarats', function (Blueprint $table) {
             $table->id();
-            $table->string('skripsi');
+            $table->string('skripsi')->nullable();
             $table->enum('skripsistatus', ['0','1','2'])->default('0');
-            $table->string('photo');
+            $table->string('judul')->nullable();
+            $table->string('photo')->nullable();
             $table->enum('photostatus', ['0','1','2'])->default('0');
-            $table->string('ppmb');
+            $table->string('ppmb')->nullable();
             $table->enum('ppmbstatus', ['0','1','2'])->default('0');
-            $table->string('serticalonsarjana');
+            $table->string('serticalonsarjana')->nullable();
             $table->enum('serticalonsarjanastatus', ['0','1','2'])->default('0');
-            $table->string('sertibebasperpus');
+            $table->string('sertibebasperpus')->nullable();
             $table->enum('sertibebasperpusstatus', ['0','1','2'])->default('0');
-            $table->string('sertimaba');
+            $table->string('sertimaba')->nullable();
             $table->enum('sertimabastatus', ['0','1','2'])->default('0');
             $table->string('bebaslab')->nullable();
             $table->enum('bebaslabstatus', ['0','1','2'])->default('0');
-            $table->string('transkrip');
+            $table->string('transkrip')->nullable();
             $table->enum('transkripstatus', ['0','1','2'])->default('0');
-            $table->string('pembayaran');
+            $table->string('pembayaran')->nullable();
             $table->enum('pembayaranstatus', ['0','1','2'])->default('0');
             $table->string('status')->default('Belum Terverifikasi');
             $table->string('feedback')->nullable();

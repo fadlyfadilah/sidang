@@ -32,6 +32,7 @@ class Mahasiswa extends Model
     protected $fillable = [
         'user_id',
         'prodi',
+        'judul',
         'tempat_lahir',
         'ttl',
         'alamat',
