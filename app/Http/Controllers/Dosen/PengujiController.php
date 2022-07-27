@@ -12,11 +12,11 @@ class PengujiController extends Controller
 {
     public function index()
     {
-        $list = new Dosen();
-        $dosens = $list->dosenUser();
-        $mahasiswa = Mahasiswa::with(['userpenguji', 'syarats'])->where('user_id', auth()->user()->id)->first();
-        dd($mahasiswa);
-        return view('user.dosens.index', compact('dosens', 'mahasiswa'));
+        // $list = new Dosen();
+        // $dosens = $list->dosenUser();
+        // $mahasiswa = Mahasiswa::with(['userpenguji', 'syarats'])->where('user_id', auth()->user()->id)->first();
+        // dd($mahasiswa);
+        // return view('user.dosens.index', compact('dosens', 'mahasiswa'));
     }
 
     public function store(Request $request)

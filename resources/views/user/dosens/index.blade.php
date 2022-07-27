@@ -36,6 +36,13 @@
                                         <tr>
                                             <td>{{ $mhs->user->name }}</td>
                                             <td class="text-uppercase">{{ $mhs->user->nik }}</td>
+                                            {{-- @foreach ($mhs->syarats as $s)
+                                                @if ($s->skripsi)
+                                                    <td><a href="{{ asset('/storage/' . $s->skripsi) }}">Skripsi</a></td>
+                                                @else
+                                                    <td>Belum Mengupload File Skripsi</td>
+                                                @endif
+                                            @endforeach --}}
                                         </tr>
                                     @endforeach
                                 </table>
@@ -53,6 +60,13 @@
                                         <tr>
                                             <td>{{ $mhs->user->name }}</td>
                                             <td class="text-uppercase">{{ $mhs->user->nik }}</td>
+                                            {{-- @foreach ($mhs->syarats as $s)
+                                                @if ($s->skripsi != '')
+                                                    <td><a href="{{ asset('/storage/' . $s->skripsi) }}">Skripsi</a></td>
+                                                @else
+                                                    <td>Belum Mengupload File Skripsi</td>
+                                                @endif
+                                            @endforeach --}}
                                         </tr>
                                     @endforeach
                                 </table>
@@ -76,8 +90,9 @@
                                                     <input type="hidden" name="mahasiswa_id" value="{{ $mhs->id }}">
                                                     <div class="form-group mb-2 ">
                                                         <label for="nilai" class="sr-only">Nilai</label>
-                                                        <input type="text" class="form-control-plaintext border border-primary" id="nilai"
-                                                            name="nilai" value="">
+                                                        <input type="text"
+                                                            class="form-control-plaintext border border-primary"
+                                                            id="nilai" name="nilai" value="">
                                                     </div>
                                                     <button type="submit" class="btn btn-primary mb-2">Simpan</button>
                                                 </form>
