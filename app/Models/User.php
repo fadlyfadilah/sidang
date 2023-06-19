@@ -44,6 +44,17 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::created(function (self $user) {
+            $registrationRole = config('panel.registration_default_role');
+            if (! $user->roles()->get()->contains($registrationRole)) {
+                $user->roles()->attach($registrationRole);
+            }
+        });
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 2)->exists();

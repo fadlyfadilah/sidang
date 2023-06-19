@@ -84,7 +84,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            judul Skripsi
+                                            Judul Skripsi
                                         </th>
                                         <td colspan="2">
                                             {{ $syarat->judul ?? '' }}
@@ -577,6 +577,7 @@
                                                 value="{{ $syarat->status }}">{{ $syarat->status }}</option>
                                             <option value="Terverifikasi Admin Fakultas">Terverifikasi Admin Fakultas
                                             </option>
+                                            <option value="Terverifikasi dengan Perbaikan">Terverifikasi dengan Perbaikan</option>
                                             <option value="Disetujui Kasie Akademik">Disetujui Kasie Akademik</option>
                                             <option value="Disetujui Wakil Dekan 1">Disetujui Wakil Dekan 1</option>
                                         </select>

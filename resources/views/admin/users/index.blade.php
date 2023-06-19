@@ -7,6 +7,13 @@
                 <a class="btn btn-success" href="{{ route('admin.users.create') }}">
                     Tambah User
                 </a>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                    Import Data
+                </button>
+                @include('csvImport.modal', [
+                    'model' => 'User',
+                    'route' => 'admin.users.parseCsvImport',
+                ])
             </div>
         </div>
     @endcan
