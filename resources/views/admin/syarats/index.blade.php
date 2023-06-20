@@ -30,6 +30,9 @@
 
                                         </th>
                                         <th>
+                                            Id
+                                        </th>
+                                        <th>
                                             NPM
                                         </th>
                                         <th>
@@ -51,6 +54,9 @@
                                         <tr data-entry-id="{{ $syarat->id }}">
                                             <td>
 
+                                            </td>
+                                            <td>
+                                                {{ $syarat->id ?? '' }}
                                             </td>
                                             <td>
                                                 {{ $syarat->mahasiswa->user->nik ?? '' }}
