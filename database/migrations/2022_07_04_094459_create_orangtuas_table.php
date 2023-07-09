@@ -22,7 +22,6 @@ return new class extends Migration
             $table->longText('alamat');
             $table->string('no_hp');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('asal_sekolah');
             $table->string('medsos');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
