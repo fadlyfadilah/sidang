@@ -43,6 +43,14 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
+    public function rolem(User $user)
+    {
+        $user->roles()->sync([3]);
+
+        return redirect()->route('admin.users.index');
+
+    }
+
     public function edit(User $user)
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');

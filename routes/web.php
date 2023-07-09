@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('users/destroy', [UsersController::class, 'massDestroy'])->name('users.massDestroy');
     Route::post('users/parse-csv-import', [UsersController::class ,'parseCsvImport'])->name('users.parseCsvImport');
     Route::post('users/process-csv-import', [UsersController::class ,'processCsvImport'])->name('users.processCsvImport');
+    Route::post('users/rolem/{user}', [UsersController::class ,'rolem'])->name('users.rolem');
     Route::resource('users', UsersController::class);
 
     // Mahasiswa
