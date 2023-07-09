@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use SoftDeletes;
     use Notifiable;
     use HasFactory;
     use \Znck\Eloquent\Traits\BelongsToThrough;
