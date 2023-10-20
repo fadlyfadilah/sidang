@@ -6,12 +6,10 @@ use \DateTimeInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class Mahasiswa extends Model
 {
-    use SoftDeletes;
     use HasFactory;
 
     public const PRODI_SELECT = [
